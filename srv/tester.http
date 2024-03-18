@@ -1,0 +1,85 @@
+###Get the service document
+http://localhost:4004/odata/v4/CatalogService/
+
+###Get the service metadata document
+http://localhost:4004/odata/v4/CatalogService/$metadata
+
+###Get All Employees Data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+
+###Count All Employees
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+###Get Single Employees Data by its key
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C198C7FB
+
+###Get All Employees Data - pagination
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&$skip=2
+
+###Get All Employees Data - filter
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=sex eq 'F'
+
+###Get All Employees Data- filter with texts
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'Su')
+
+###Get All Employees Data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&$skip=2&$select=ID,nameFirst,email
+
+###Insert Employee data
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+      "nameFirst": "Anubhav",
+      "nameMiddle": "",
+      "nameLast": "Oberoy",
+      "nameInitials": null,
+      "sex": "M",
+      "language": "E",
+      "phoneNumber": null,
+      "email": "contact@anubhavtrainings.com",
+      "loginName": "OBEROYAB",
+      "Currency_code": "USD",
+      "salaryAmount": 85962,
+      "accountNumber": "8444455465",
+      "bankId": "121000358",
+      "bankName": "My Bank of San Francisco"
+}
+
+
+###Read the created employee data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/2cc98831-fcf5-43ef-9c2a-de428c27932a
+
+###Update employee Salary
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/1859a209-023b-4ce2-a02e-e339dbaec79d
+Content-Type: application/json
+
+{
+    "salaryAmount": 1000000,
+    "Currency_code": "INR"
+}
+
+###Remove the employee
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/2cc98831-fcf5-43ef-9c2a-de428c27932a
+
+
+###Get all POs
+http://localhost:4004/odata/v4/CatalogService/POs
+
+###Get single order by key
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2E052
+
+###How to leverage the association for items
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2E052?$expand=Items
+
+###Call the action
+POST http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2E052/CatalogService.boost
+Content-Type: application/json
+
+{}
+
+###Calling function
+http://localhost:4004/odata/v4/CatalogService/largestOrder()
+
+###Get all POs
+http://localhost:4004/v2/odata/v4/CatalogService/POs
